@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.solve.prueba.exception.ReservasException;
 import com.solve.prueba.model.dto.VuelosDto;
-import com.solve.prueba.service.ReservasService;
+import com.solve.prueba.service.VuelosService;
+import com.solve.prueba.util.ConstantesUtil;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping(ConstantesUtil.URL_API)
 public class ReservasController {
 	
-	@Autowired private ReservasService reservasService;
+	@Autowired private VuelosService reservasService;
 
 	@RequestMapping(method=RequestMethod.GET)
 	public List<VuelosDto> consultarVuelosDisponibles() {
