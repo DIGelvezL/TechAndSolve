@@ -2,41 +2,38 @@ package com.solve.prueba.model.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
-import org.eclipse.persistence.annotations.ReturnInsert;
-
 import java.util.Date;
 import java.util.List;
 
 
 /**
- * The persistent class for the "VUELOS" database table.
+ * The persistent class for the vuelos database table.
  * 
  */
 @Entity
-@Table(name="\"VUELOS\"")
+@Table(name="vuelos")
 @NamedQuery(name="Vuelo.findAll", query="SELECT v FROM Vuelo v")
 public class Vuelo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@ReturnInsert(returnOnly = true)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
 	private String aerolinea;
 
+	private String destino;
+
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
+
+	private String origen;
 
 	private double valor;
 
 	//bi-directional many-to-one association to Reserva
 	@OneToMany(mappedBy="vuelo")
 	private List<Reserva> reservas;
-
-	public Vuelo() {
-		super();
-	}
 
 	public Integer getId() {
 		return this.id;
@@ -54,12 +51,28 @@ public class Vuelo implements Serializable {
 		this.aerolinea = aerolinea;
 	}
 
+	public String getDestino() {
+		return this.destino;
+	}
+
+	public void setDestino(String destino) {
+		this.destino = destino;
+	}
+
 	public Date getFecha() {
 		return this.fecha;
 	}
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+	public String getOrigen() {
+		return this.origen;
+	}
+
+	public void setOrigen(String origen) {
+		this.origen = origen;
 	}
 
 	public double getValor() {

@@ -2,24 +2,21 @@ package com.solve.prueba.model.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
-import org.eclipse.persistence.annotations.ReturnInsert;
-
 import java.util.Date;
 
 
 /**
- * The persistent class for the "RESERVAS" database table.
+ * The persistent class for the reservas database table.
  * 
  */
 @Entity
-@Table(name="\"RESERVAS\"")
+@Table(name="reservas")
 @NamedQuery(name="Reserva.findAll", query="SELECT r FROM Reserva r")
 public class Reserva implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@ReturnInsert(returnOnly = true)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
 	@Temporal(TemporalType.DATE)
@@ -35,10 +32,6 @@ public class Reserva implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_vuelo")
 	private Vuelo vuelo;
-
-	public Reserva() {
-		super();
-	}
 
 	public Integer getId() {
 		return this.id;

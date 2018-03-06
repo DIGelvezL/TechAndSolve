@@ -7,6 +7,6 @@ import com.solve.prueba.model.dto.VuelosDto;
 
 public interface VuelosService {
 
-	List<VuelosDto> getVuelosDisponibles() throws ReservasException;
+	List<VuelosDto> getVuelos() throws ReservasException;
 
 }

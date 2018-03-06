@@ -21,20 +21,10 @@ public class VuelosServiceImpl implements VuelosService{
 	ModelMapper modelMapper = new ModelMapper();
 
 	@Override
-	public List<VuelosDto> getVuelosDisponibles() throws ReservasException {
+	public List<VuelosDto> getVuelos() throws ReservasException {
 		List<Vuelo> lst = (List<Vuelo>) vueloRepository.findAll();
-		return lst.stream().map(v -> mapearVuelosDto(v)).collect(Collectors.toList());
 		
-//		return lst.stream().map(v -> modelMapper.map(v, VuelosDto.class)).collect(Collectors.toList());
-	}
-	
-	private VuelosDto mapearVuelosDto(Vuelo vuelo){
-		VuelosDto dto = new VuelosDto();
-		dto.setId(vuelo.getId());
-		dto.setAerolinea(vuelo.getAerolinea());
-		dto.setFecha(vuelo.getFecha());
-		dto.setValor(vuelo.getValor());
-		return dto;
+		return lst.stream().map(v -> modelMapper.map(v, VuelosDto.class)).collect(Collectors.toList());
 	}
 	
 }

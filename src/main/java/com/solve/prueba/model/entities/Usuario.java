@@ -2,25 +2,22 @@ package com.solve.prueba.model.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
-import org.eclipse.persistence.annotations.ReturnInsert;
-
 import java.util.Date;
 import java.util.List;
 
 
 /**
- * The persistent class for the "USUARIOS" database table.
+ * The persistent class for the usuarios database table.
  * 
  */
 @Entity
-@Table(name="\"USUARIOS\"")
+@Table(name="usuarios")
 @NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@ReturnInsert(returnOnly = true)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
 	private String apellido;
@@ -36,10 +33,6 @@ public class Usuario implements Serializable {
 	//bi-directional many-to-one association to Reserva
 	@OneToMany(mappedBy="usuario")
 	private List<Reserva> reservas;
-
-	public Usuario() {
-		super();
-	}
 
 	public Integer getId() {
 		return this.id;
