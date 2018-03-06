@@ -9,5 +9,6 @@ public class ConstantesUtil implements Serializable {
 	public static final String URL_API="/api";
 	public static final String APPLICATION_JSON = "application/json";
 	public static final String CONSULTAR_VUELOS = "/vuelos/consultarVuelos";
+	public static final String RESERVAR_VUELO = "/reservar/reservarVuelo";
 
 }

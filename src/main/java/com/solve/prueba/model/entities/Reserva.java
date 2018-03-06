@@ -23,12 +23,10 @@ public class Reserva implements Serializable {
 	@Column(name="fecha_reserva")
 	private Date fechaReserva;
 
-	//bi-directional many-to-one association to Usuario
 	@ManyToOne
 	@JoinColumn(name="id_usuario")
 	private Usuario usuario;
 
-	//bi-directional many-to-one association to Vuelo
 	@ManyToOne
 	@JoinColumn(name="id_vuelo")
 	private Vuelo vuelo;

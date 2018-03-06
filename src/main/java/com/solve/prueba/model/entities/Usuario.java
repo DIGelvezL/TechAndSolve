@@ -30,7 +30,6 @@ public class Usuario implements Serializable {
 
 	private Integer telefono;
 
-	//bi-directional many-to-one association to Reserva
 	@OneToMany(mappedBy="usuario")
 	private List<Reserva> reservas;
 

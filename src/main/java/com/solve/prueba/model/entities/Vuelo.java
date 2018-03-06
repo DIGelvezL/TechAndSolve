@@ -31,7 +31,6 @@ public class Vuelo implements Serializable {
 
 	private double valor;
 
-	//bi-directional many-to-one association to Reserva
 	@OneToMany(mappedBy="vuelo")
 	private List<Reserva> reservas;
 
