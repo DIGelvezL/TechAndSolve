@@ -28,7 +28,9 @@ public class Usuario implements Serializable {
 
 	private String nombre;
 
-	private Integer telefono;
+	private String telefono;
+	
+	private String cedula;
 
 	@OneToMany(mappedBy="usuario")
 	private List<Reserva> reservas;
@@ -65,12 +67,20 @@ public class Usuario implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public Integer getTelefono() {
+	public String getTelefono() {
 		return this.telefono;
 	}
 
-	public void setTelefono(Integer telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
 	}
 
 	public List<Reserva> getReservas() {

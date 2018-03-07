@@ -11,7 +11,8 @@ public class UsuarioDto implements Serializable {
 	private String apellido;
 	private Date fechaNacimiento;
 	private String nombre;
-	private Integer telefono;
+	private String telefono;
+	private String cedula;
 	
 	public Integer getId() {
 		return id;
@@ -37,11 +38,17 @@ public class UsuarioDto implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Integer getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
-	public void setTelefono(Integer telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+	public String getCedula() {
+		return cedula;
+	}
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
 	}
 	
 }

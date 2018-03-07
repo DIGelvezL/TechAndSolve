@@ -1,5 +1,7 @@
 package com.solve.prueba.service.impl;
 
+import java.util.Objects;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import com.solve.prueba.exception.ReservasException;
 import com.solve.prueba.model.dto.ReservaDto;
 import com.solve.prueba.model.dto.RespuestaDto;
 import com.solve.prueba.model.entities.Reserva;
+import com.solve.prueba.model.entities.Usuario;
 import com.solve.prueba.model.response.ReservarVueloResponse;
 import com.solve.prueba.repository.ReservaRepository;
 import com.solve.prueba.repository.UsuarioRepository;
@@ -27,8 +30,15 @@ public class ReservaServiceImpl implements ReservaService {
 		
 		Reserva reserva = modelMapper.map(reservaDto, Reserva.class);
 		
-		usuarioRepository.save(reserva.getUsuario());
-		reservaRepository.save(reserva);
+		Usuario usuario = usuarioRepository.consultarByCedula(reserva.getUsuario().getCedula());
+		
+		if(Objects.nonNull(usuario)){
+			reserva.setUsuario(usuario);
+			reservaRepository.save(reserva);
+		}else{
+			usuarioRepository.save(reserva.getUsuario());
+			reservaRepository.save(reserva);
+		}
 		
 		dtoAssemblerRespuesta(reservarVueloResponse);
 		
