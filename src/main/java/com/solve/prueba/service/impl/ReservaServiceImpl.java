@@ -1,5 +1,7 @@
 package com.solve.prueba.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.modelmapper.ModelMapper;
@@ -50,6 +52,23 @@ public class ReservaServiceImpl implements ReservaService {
 		respuesta.setCodigo(0);
 		respuesta.setDescripcion("OK");
 		reservarVueloResponse.setRespuestaDto(respuesta);
+	}
+	
+	@Override
+	public List<ReservaDto> consultarByCedula(String cedula) throws ReservasException {
+		List<ReservaDto> reservaDtoList = new ArrayList<>();
+		
+		List<Reserva> reserva = reservaRepository.consultarByCedula(cedula);
+		
+		if(Objects.nonNull(reserva) && !reserva.isEmpty()){
+			for (Reserva item : reserva) {
+				ReservaDto reservaDto = modelMapper.map(item, ReservaDto.class);
+				
+				reservaDtoList.add(reservaDto);
+			}
+		}
+		
+		return reservaDtoList;
 	}
 
 }

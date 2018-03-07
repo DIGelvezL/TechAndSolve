@@ -1,10 +1,13 @@
 package com.solve.prueba.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,5 +35,17 @@ public class ReservaController {
 			e.printStackTrace();
 		}
 		return reservarVueloResponse;
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = ConstantesUtil.CONSULTAR_RESERVA_BY_CEDULA, method = RequestMethod.GET)
+	public List<ReservaDto> consultarByCedula(@RequestParam(value = "cedula", required = true) String cedula) {
+		List<ReservaDto> reservaDtoList = null;
+		try {
+			reservaDtoList = reservaService.consultarByCedula(cedula);
+		} catch (ReservasException e) {
+			e.printStackTrace();
+		}
+		return reservaDtoList;
 	}
 }
