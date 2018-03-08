@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.solve.prueba.exception.ReservasException;
 import com.solve.prueba.model.dto.ReservaDto;
+import com.solve.prueba.model.request.ConsultaReservaRequest;
 import com.solve.prueba.model.response.ReservarVueloResponse;
 import com.solve.prueba.service.ReservaService;
 import com.solve.prueba.util.ConstantesUtil;
@@ -43,6 +44,19 @@ public class ReservaController {
 		List<ReservaDto> reservaDtoList = null;
 		try {
 			reservaDtoList = reservaService.consultarByCedula(cedula);
+		} catch (ReservasException e) {
+			e.printStackTrace();
+		}
+		return reservaDtoList;
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = ConstantesUtil.CONSULTAR_RESERVA_BY_CEDULA_FECHA, method = RequestMethod.POST, 
+			consumes=ConstantesUtil.APPLICATION_JSON,produces = ConstantesUtil.APPLICATION_JSON)
+	public List<ReservaDto> consultarByCedulaFecha(@RequestBody ConsultaReservaRequest request) {
+		List<ReservaDto> reservaDtoList = null;
+		try {
+			reservaDtoList = reservaService.consultarByCedulaFecha(request.getCedula(), request.getFechaReserva());
 		} catch (ReservasException e) {
 			e.printStackTrace();
 		}

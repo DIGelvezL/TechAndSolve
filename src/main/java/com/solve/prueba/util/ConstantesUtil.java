@@ -11,5 +11,6 @@ public class ConstantesUtil implements Serializable {
 	public static final String CONSULTAR_VUELOS = "/vuelos/consultarVuelos";
 	public static final String RESERVAR_VUELO = "/reserva/reservarVuelo";
 	public static final String CONSULTAR_RESERVA_BY_CEDULA = "/reserva/consultarByCedula";
+	public static final String CONSULTAR_RESERVA_BY_CEDULA_FECHA = "/reserva/consultarByCedulaFecha";
 
 }

@@ -1,6 +1,7 @@
 package com.solve.prueba.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -59,6 +60,23 @@ public class ReservaServiceImpl implements ReservaService {
 		List<ReservaDto> reservaDtoList = new ArrayList<>();
 		
 		List<Reserva> reserva = reservaRepository.consultarByCedula(cedula);
+		
+		if(Objects.nonNull(reserva) && !reserva.isEmpty()){
+			for (Reserva item : reserva) {
+				ReservaDto reservaDto = modelMapper.map(item, ReservaDto.class);
+				
+				reservaDtoList.add(reservaDto);
+			}
+		}
+		
+		return reservaDtoList;
+	}
+	
+	@Override
+	public List<ReservaDto> consultarByCedulaFecha(String cedula, Date fecha) throws ReservasException {
+		List<ReservaDto> reservaDtoList = new ArrayList<>();
+		
+		List<Reserva> reserva = reservaRepository.consultarByCedulaFecha(cedula, fecha);
 		
 		if(Objects.nonNull(reserva) && !reserva.isEmpty()){
 			for (Reserva item : reserva) {
