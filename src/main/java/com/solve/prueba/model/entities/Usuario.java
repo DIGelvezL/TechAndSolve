@@ -23,7 +23,8 @@ public class Usuario implements Serializable {
 	private String apellido;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="fecha_nacimiento")
+//	@Column(name="fecha_nacimiento")
+	@Column(nullable = true)
 	private Date fechaNacimiento;
 
 	private String nombre;

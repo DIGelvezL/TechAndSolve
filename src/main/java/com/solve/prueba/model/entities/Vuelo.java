@@ -12,23 +12,27 @@ import java.util.List;
  */
 @Entity
 @Table(name="vuelos")
-@NamedQuery(name="Vuelo.findAll", query="SELECT v FROM Vuelo v")
+//@NamedQuery(name="Vuelo.findAll", query="SELECT v FROM Vuelo v")
 public class Vuelo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-
+	
+	@Column(nullable = true)
 	private String aerolinea;
-
+	
+	@Column(nullable = true)
 	private String destino;
 
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
-
+	
+	@Column(nullable = true)
 	private String origen;
-
+	
+	@Column(nullable = true)
 	private double valor;
 
 	@OneToMany(mappedBy="vuelo")

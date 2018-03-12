@@ -32,19 +32,25 @@ public class ReservaServiceImpl implements ReservaService {
 	public ReservarVueloResponse reservarVuelo(ReservaDto reservaDto) throws ReservasException {
 		ReservarVueloResponse reservarVueloResponse = new ReservarVueloResponse();
 		
-		Reserva reserva = modelMapper.map(reservaDto, Reserva.class);
+		if(Objects.nonNull(reservaDto)){
 		
-		Usuario usuario = usuarioRepository.consultarByCedula(reserva.getUsuario().getCedula());
-		
-		if(Objects.nonNull(usuario)){
-			reserva.setUsuario(usuario);
-			reservaRepository.save(reserva);
-		}else{
-			usuarioRepository.save(reserva.getUsuario());
-			reservaRepository.save(reserva);
+			Reserva reserva = modelMapper.map(reservaDto, Reserva.class);
+			
+			if(Objects.nonNull(reserva.getUsuario())){
+			
+				Usuario usuario = usuarioRepository.findByCedula(reserva.getUsuario().getCedula());
+				
+				if(Objects.nonNull(usuario)){
+					reserva.setUsuario(usuario);
+					reservaRepository.save(reserva);
+				}else{
+					usuarioRepository.save(reserva.getUsuario());
+					reservaRepository.save(reserva);
+				}
+				
+				dtoAssemblerRespuesta(reservarVueloResponse);
+			}
 		}
-		
-		dtoAssemblerRespuesta(reservarVueloResponse);
 		
 		return reservarVueloResponse;
 	}

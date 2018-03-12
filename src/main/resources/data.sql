@@ -1,0 +1,2 @@
+insert into usuarios (id, apellido, nombre, telefono, cedula) values (1, 'gelvez', 'daniel', '123456', '1');
+insert into vuelos (id, aerolinea, destino, fecha, origen, valor) values (1, 'avianca', 'bogota', '2018-04-18', 'medellin', '150000');
